@@ -27,12 +27,12 @@ module.exports = {
             const user = req.body
             const {password} = req.user
 
-          await   passCompare(password, user.password)
-            const tokens = await tokinazer()
+           await  passCompare(password, user.password)
+            const tokens =  tokinazer()
 
-           await OAuthService.createToken({
+            OAuthService.createToken({
                 ...tokens,
-                user_id: user.id
+                user_id: req.user.id
             })
 
             res.json(tokens)
@@ -42,13 +42,13 @@ module.exports = {
     },
     refreshToken: async (req, res, next) => {
         try {
-            const user = req.body
+            const user = req.user
          const oldToken = req.get(conf.AUTHORIZATION)
-            const newToken = await tokinazer()
+            const newToken =  tokinazer()
 
-            OAuthService.deleteByParams({refresh_token: oldToken})
+          await  OAuthService.deleteByParams({refresh_token: oldToken})
 
-            OAuthService.createToken({
+           await OAuthService.createToken({
                 ...newToken,
                 user_id: user.id
             })

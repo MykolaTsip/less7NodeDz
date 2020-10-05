@@ -9,8 +9,8 @@ module.exports = (sequelize, Datatypes) => {
                 primaryKey: true
             },
         access_token: {
-                type: Datatypes.STRING,
-            allowNull: false
+                type: Datatypes.STRING
+
         },
         refresh_token: {
                 type: Datatypes.STRING
@@ -19,6 +19,7 @@ module.exports = (sequelize, Datatypes) => {
         user_id: {
                 type: Datatypes.INTEGER,
             foreignKey: true,
+            defaultValue: false
         },
         created_at: {
                 type: Datatypes.STRING,

@@ -13,7 +13,10 @@ catch (e) {
     },
     NewCar: async (req, res) => {
         try {
-            let newCar = await carService.newCar(req.body)
+
+            const {body, user} = req
+
+            let newCar = await carService.newCar({...body, user_id: user.id})
             res.json(newCar)
         }
         catch (e) {
